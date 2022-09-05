@@ -1,0 +1,108 @@
+@font-face {
+    font-family: 'Noto Sans Display';
+    src: local('Noto Sans Display Light'), local('NotoSansDisplay-Light'), url('Notosansdisplaylight.woff2') format('woff2'), url('Notosansdisplaylight.woff') format('woff'), url('Notosansdisplaylight.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Noto Sans Display';
+    src: local('Noto Sans Display Regular'), local('NotoSansDisplay-Regular'), url('Notosansdisplayregular.woff2') format('woff2'), url('Notosansdisplayregular.woff') format('woff'), url('Notosansdisplayregular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Noto Sans Display';
+    src: local('Noto Sans Display SemiBold'), local('NotoSansDisplay-SemiBold'), url('Notosansdisplaysemibold.woff2') format('woff2'), url('Notosansdisplaysemibold.woff') format('woff'), url('Notosansdisplaysemibold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Noto Sans Display';
+    src: local('Noto Sans Display Thin'), local('NotoSansDisplay-Thin'), url('Notosansdisplaythin.woff2') format('woff2'), url('Notosansdisplaythin.woff') format('woff'), url('Notosansdisplaythin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Noto Sans Display';
+    src: local('Noto Sans Display Italic'), local('NotoSansDisplay-Italic'), url('Notosansdisplayitalic.woff2') format('woff2'), url('Notosansdisplayitalic.woff') format('woff'), url('Notosansdisplayitalic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Noto Sans Display';
+    src: local('Noto Sans Display Medium Italic'), local('NotoSansDisplay-MediumItalic'), url('Notosansdisplaymediumitalic.woff2') format('woff2'), url('Notosansdisplaymediumitalic.woff') format('woff'), url('Notosansdisplaymediumitalic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Noto Sans Display';
+    src: local('Noto Sans Display ExtraLight Italic'), local('NotoSansDisplay-ExtraLightItalic'), url('Notosansdisplayextralightitalic.woff2') format('woff2'), url('Notosansdisplayextralightitalic.woff') format('woff'), url('Notosansdisplayextralightitalic.ttf') format('truetype');
+    font-weight: 200;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Noto Sans Display';
+    src: local('Noto Sans Display ExtraBold Italic'), local('NotoSansDisplay-ExtraBoldItalic'), url('Notosansdisplayextrabolditalic.woff2') format('woff2'), url('Notosansdisplayextrabolditalic.woff') format('woff'), url('Notosansdisplayextrabolditalic.ttf') format('truetype');
+    font-weight: 800;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Noto Sans Display';
+    src: local('Noto Sans Display ExtraBold'), local('NotoSansDisplay-ExtraBold'), url('Notosansdisplayextrabold.woff2') format('woff2'), url('Notosansdisplayextrabold.woff') format('woff'), url('Notosansdisplayextrabold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Noto Sans Display';
+    src: local('Noto Sans Display Light Italic'), local('NotoSansDisplay-LightItalic'), url('Notosansdisplaylightitalic.woff2') format('woff2'), url('Notosansdisplaylightitalic.woff') format('woff'), url('Notosansdisplaylightitalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Noto Sans Display';
+    src: local('Noto Sans Display Black'), local('NotoSansDisplay-Black'), url('Notosansdisplayblack.woff2') format('woff2'), url('Notosansdisplayblack.woff') format('woff'), url('Notosansdisplayblack.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Noto Sans Display';
+    src: local('Noto Sans Display Thin Italic'), local('NotoSansDisplay-ThinItalic'), url('Notosansdisplaythinitalic.woff2') format('woff2'), url('Notosansdisplaythinitalic.woff') format('woff'), url('Notosansdisplaythinitalic.ttf') format('truetype');
+    font-weight: 100;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Noto Sans Display';
+    src: local('Noto Sans Display Medium'), local('NotoSansDisplay-Medium'), url('Notosansdisplaymedium.woff2') format('woff2'), url('Notosansdisplaymedium.woff') format('woff'), url('Notosansdisplaymedium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Noto Sans Display';
+    src: local('Noto Sans Display ExtraLight'), local('NotoSansDisplay-ExtraLight'), url('Notosansdisplayextralight.woff2') format('woff2'), url('Notosansdisplayextralight.woff') format('woff'), url('Notosansdisplayextralight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Noto Sans Display';
+    src: local('Noto Sans Display Bold Italic'), local('NotoSansDisplay-BoldItalic'), url('Notosansdisplaybolditalic.woff2') format('woff2'), url('Notosansdisplaybolditalic.woff') format('woff'), url('Notosansdisplaybolditalic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Noto Sans Display';
+    src: local('Noto Sans Display SemiBold Italic'), local('NotoSansDisplay-SemiBoldItalic'), url('Notosansdisplaysemibolditalic.woff2') format('woff2'), url('Notosansdisplaysemibolditalic.woff') format('woff'), url('Notosansdisplaysemibolditalic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Noto Sans Display';
+    src: local('Noto Sans Display Bold'), local('NotoSansDisplay-Bold'), url('Notosansdisplaybold.woff2') format('woff2'), url('Notosansdisplaybold.woff') format('woff'), url('Notosansdisplaybold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Noto Sans Display';
+    src: local('Noto Sans Display Black Italic'), local('NotoSansDisplay-BlackItalic'), url('Notosansdisplayblackitalic.woff2') format('woff2'), url('Notosansdisplayblackitalic.woff') format('woff'), url('Notosansdisplayblackitalic.ttf') format('truetype');
+    font-weight: 900;
+    font-style: italic;
+}

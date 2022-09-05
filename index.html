@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Кошелек-банк</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="js/script.js"></script>
+
+    <script type="text/javascript" src="js/settings_local.js"></script>
+    <script type="text/javascript" src="js/payment_manager.js"></script>
+
+
+</head>
+<body>
+
+    <svg style="display: none;">
+        <symbol id="drop-arrow" viewBox="0 0 11 6" fill="none">
+            <g>
+                <path d="M1.74207 1L5.74207 5L9.74207 1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+        </symbol>
+        <symbol id="right-arrow" viewBox="0 0 16 16">
+            <g>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M2.00015 8.00002C2.00015 7.21209 2.15535 6.43187 2.45689 5.70392C2.75844 4.97597 3.20041 4.31453 3.75759 3.75738C4.31477 3.20023 4.97624 2.75827 5.70423 2.45674C6.43222 2.15521 7.21247 2.00002 8.00044 2.00002C8.78841 2.00002 9.56867 2.15521 10.2967 2.45674C11.0246 2.75827 11.6861 3.20023 12.2433 3.75738C12.8005 4.31453 13.2425 4.97597 13.544 5.70392C13.8455 6.43187 14.0007 7.21209 14.0007 8.00002C14.0007 9.59132 13.3686 11.1174 12.2433 12.2427C11.118 13.3679 9.59182 14 8.00044 14C6.40907 14 4.88287 13.3679 3.75759 12.2427C2.63232 11.1174 2.00015 9.59132 2.00015 8.00002ZM8.00044 0.666687C3.95024 0.666687 0.666748 3.95002 0.666748 8.00002C0.666748 12.05 3.95024 15.3334 8.00044 15.3334C12.0506 15.3334 15.3341 12.05 15.3341 8.00002C15.3341 3.95002 12.0506 0.666687 8.00044 0.666687ZM7.1384 4.19535C7.01266 4.07392 6.84425 4.00672 6.66945 4.00824C6.49464 4.00976 6.32742 4.07987 6.20381 4.20347C6.0802 4.32708 6.01008 4.49429 6.00856 4.66909C6.00704 4.84388 6.07424 5.01229 6.19569 5.13802L9.05783 8.00002L6.19569 10.862C6.13201 10.9235 6.08122 10.9971 6.04628 11.0784C6.01134 11.1598 5.99295 11.2472 5.99218 11.3358C5.99141 11.4243 6.00828 11.5121 6.0418 11.594C6.07532 11.6759 6.12483 11.7504 6.18743 11.813C6.25002 11.8755 6.32446 11.925 6.4064 11.9586C6.48833 11.9921 6.57612 12.009 6.66465 12.0082C6.75317 12.0074 6.84065 11.989 6.92199 11.9541C7.00333 11.9191 7.0769 11.8684 7.1384 11.8047L10.4719 8.47135C10.5969 8.34634 10.6671 8.1768 10.6671 8.00002C10.6671 7.82324 10.5969 7.65371 10.4719 7.52869L7.1384 4.19535Z"/>
+            </g>
+        </symbol>
+        <symbol id="exit" viewBox="0 0 18 16">
+            <g>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M5.66668 8.83336L14.4882 8.83336L11.7441 11.5774L12.9226 12.7559L17.6785 8.00003L12.9226 3.24411L11.7441 4.42262L14.4882 7.16669L5.66668 7.16669L5.66668 8.83336ZM2.33334 15.5L9.83335 15.5L9.83335 13.8333L2.33334 13.8333L2.33335 2.16667L9.83335 2.16667L9.83335 0.5L2.33335 0.499999C1.41287 0.499999 0.666679 1.24619 0.666679 2.16667L0.666679 13.8333C0.666679 14.7538 1.41287 15.5 2.33334 15.5Z"/>
+            </g>
+        </symbol>
+    </svg>
+
+
+
+    <!-- <header class="header"></header> -->
+
+   <div class="container">
+        <div class="content">
+            <div class="left__block">
+                    <div class="block__header">
+                        <h2>Валюта</h2>
+                    </div>
+                    <div class="block__body currency__body">
+                        <div class="currency">
+                             <h3 id="currency_bitcoin" class="active"><img src="img/currency/Bitcoin.svg" alt="Bitcoin"><span>Bitcoin (BTC)</span></h3>
+                             <h3 id="currency_litecoin"><img src="img/currency/Litecoin.svg" alt="Litecoin"><span>Litecoin (BTC)</span></h3>
+                             <h3 id="currency_ethereum"><img src="img/currency/Ethereum.svg" alt="Ethereum"><span>Ethereum (ETH)</span></h3>
+                             <h3 id="currency_usdt_tron"><img src="img/currency/Tether_TRC.svg" alt="Tether TRC-20 (USDT)"><span>Tether TRC-20 (USDT)</span></h3>
+                             <h3 id="currrency_usdt_ether"><img src="img/currency/Tether_ERC.svg" alt="Tether ERC-20 (USDT)"><span>Tether ERC-20 (USDT)</span></h3>
+                             <!-- <div>
+                                  <table>
+                                      <tbody>
+                                        <tr class='active_acc'>
+                                            <td>
+                                                <a href="#">
+                                                    <div>Счет №1</div>
+                                                    <div>9.01477933 BTC</div>
+                                                </a>
+                                            </td>                                      
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="#">
+                                                    <div>Счет №2</div>
+                                                    <div>19.01477933 BTC</div>
+                                                </a>
+                                            </td>             
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="#">
+                                                    <div>Счет №3</div>
+                                                    <div>0.01477933 BTC</div>
+                                                </a>
+                                            </td>             
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="#">
+                                                    <div>Счет №4</div>
+                                                    <div>0.00077933 BTC</div>
+                                                </a>
+                                            </td>             
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <a href="#">
+                                                    <div>Счет №5</div>
+                                                    <div>90.00077933 BTC</div>
+                                                </a>
+                                            </td>             
+                                        </tr>
+                                        <tr class="new__acc">
+                                            <td><span><a href="#">Новый счет</a></span></td>
+                                        </tr>
+                                      </tbody>
+                                  </table>
+                             </div> -->
+                             
+                        </div>
+                    </div>
+            </div>
+            <div class="right__block">
+                <div class="tabs">
+                    <div class="tabs__nav">
+                        <div class="tabs__nav__inner">
+                            <span><svg class="right_arrow"><use href="#right-arrow"></use></svg></span>
+                            <a id='transaction_tab' href="#content-1" class="tabs__link tabs__link_active">Транзакции</a>
+                            <a id='receive_tab' href="#content-2" class="tabs__link">Получить</a>
+                            <a id='send_tab' href="#content-3" class="tabs__link">Отправить</a>
+                        </div>
+                        <div class="exit_menu">
+                            <a href="#" class="tabs__exit">
+                                <svg class="exit-btn"> <use xlink:href="#exit"></use> </svg>
+                            </a>
+                            <div class="exit_inner">
+                                <a id="logout" href="#" class="exit">Выйти</a>
+                                <div class="stick">|</div>
+                                <a href="#" class="cancel_exit">Отмена</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tabs__content">
+                        <div class="tabs__pane tabs__pane_show" id="content-1">
+                            <div class="content__inner">
+                                <div class="main__info">
+                                    <div class="main__info__inner">
+                                        <div>
+                                            <h3>
+
+                                                <span id='transaction_currency_name'>
+                                                    Bitcoin
+                                                </span>
+
+                                                <span class="details">
+                                                    <img src="img/icons/circled_arrow.svg">
+                                                </span>
+
+                                            </h3>
+                                            <p class="small_grey">С <span class="underline">14 марта 2021 г.</span> до <span class="underline">30 марта 2021 г.</span></p>
+                                        </div>
+                                        <div>
+                                            <p class="small_grey">Текущий баланс</p>
+                                            <p class="big_black">9.01477933 BTC</p>
+                                        </div>
+                                        <div class="conversion">
+                                            <p class="small_grey">
+                                                Конвертация
+                                                <select name="select_currency" id="select_currency">
+                                                    <option value="RUB">RUB</option>
+                                                    <option value="USD">USD</option>
+                                                </select>
+                                            </p>
+                                            <p class="big_black currency_rub">37 442 818.62 RUB <img class="green_arrow_up" src="img/icons/green_arrow_up.svg"></p>
+                                            <p class="big_black currency_usd">503 410.52 USD <img class="green_arrow_up" src="img/icons/green_arrow_up.svg"></p>
+                                        </div>
+                                        <div>
+                                            <p class="small_grey">Не подтверждёно</p>
+                                            <p class="big_black">0.01477933 BTC</p>
+                                        </div>
+                                    </div>
+                                    <div class="info__details">
+                                        <div class="course">
+                                            <p>Курс: <span class="currency_rub">4 153 492.53 RUB</span><span class="currency_usd">55 842.80 USD</span>
+                                            
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p class="small_grey"><img src="img/icons/plus.svg">Получено</p>
+                                            <p>0.01477933 BTC</p>
+                                            <p class="small_grey">4 704 317.00 RUB</p>
+                                        </div>
+                                        <div>
+                                            <p class="small_grey"><img src="img/icons/minus.svg">Отправлено</p>
+                                            <p>0.01477933 BTC</p>
+                                            <p class="small_grey">4 704 317.00 RUB</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <table class="table" id="transaction_table">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="3">Транзакции</th>
+                                            <th colspan="2">
+                                                <form action="" method="get" class="search">
+                                                    <input  type="text" placeholder="Поиск адреса, даты или суммы">
+                                                    <button type="submit"></button>
+                                                </form>
+                                            </th>
+                                            <th colspan="1">
+                                                <div class="dropdown">
+                                                    <button class="dropbtn">
+                                                        <img src="img/icons/cloud.svg">
+                                                        <span>Экспорт</span>
+                                                        <svg class="drop-arrow"> <use xlink:href="#drop-arrow"></use> </svg>
+                                                    </button>
+                                                    <div class="dropdown-content">
+                                                        <a href="#"><span>Экспорт PDF</span></a>
+                                                        <a href="#"><span>Экспорт CSV</span></a>
+                                                    </div>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="pending_transactions">
+                                        <tr class="table_head first_head">
+                                            <td>Ожидает</td>
+                                            <td>Заявка</td>
+                                            <td colspan="2">Σ заявки, BTC</td>
+                                            <td>9.01477933 BTC</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">6 sat/b</a></td>
+                                            <td class="pop_hover"><div><a href="#" aria-label="ID 2636">29051</a></div></td>
+                                            <td><span>3Qo6CK76o6cvsdMnaAg522wKedhXjmmFWF</span></td>
+                                            <td>6.01477933</td>
+                                            <td class="green_value">0.01477933 BTC</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr style="position: relative; z-index: 0;">
+                                            <td><a href="#">30 sat/b</a></td>
+                                            <td class="pop_hover"><a href="#" aria-label="ID 2636">29051</a></td>
+                                            <td><span>3Qo6CK76o6cvsdMnaAg522wKedhXjmmFWF</span></td>
+                                            <td>6.01477933</td>
+                                            <td class="green_value">0.01477933 BTC</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">6 sat/b</a></td>
+                                            <td class="pop_hover"><a href="#" aria-label="ID 2636">29051</a></td>
+                                            <td><span>3Qo6CK76o6cvsdMnaAg522wKedhXjmmFWF</span></td>
+                                            <td>6.01477933</td>
+                                            <td class="red_value">-0.01477933 BTC</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">30 sat/b</a></td>
+                                            <td class="pop_hover"><a href="#" aria-label="ID 2636">29051</a></td>
+                                            <td><span>3Qo6CK76o6cvsdMnaAg522wKedhXjmmFWF</span></td>
+                                            <td>6.01477933</td>
+                                            <td class="red_value">-0.01477933 BTC</td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                    <tbody id="todays_transactions">
+                                        <tr class="table_head">
+                                            <td><span class="today_date">Сегодня</span></td>
+                                            <td></td>
+                                            <td colspan="2"></td>
+                                            <td>9.01477933 BTC</td>
+                                            <td>12 999.01 RUB</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="confirmations"><a href="#"><img src="img/icons/clock.svg"> 1</a></td>
+                                            <td class="pop_hover"><a href="#" aria-label="ID 2636">29051</a></td>
+                                            <td><span>3Qo6CK76o6cvsdMnaAg522wKedhXjmmFWF</span></td>
+                                            <td>6.01477933</td>
+                                            <td class="red_value">-0.01477933 BTC</td>
+                                            <td><a href="#" aria-label="BTC 6.01477933 ">999818.90</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="confirmations"><a href="#"><img src="img/icons/clock.svg"> 2</a></td>
+                                            <td class="pop_hover"><a href="#" aria-label="ID 2636">29051</a></td>
+                                            <td><span>3Qo6CK76o6cvsdMnaAg522wKedhXjmmFWF</span></td>
+                                            <td>6.01477933</td>
+                                            <td class="red_value">-0.01477933 BTC</td>
+                                            <td><a href="#" aria-label="BTC 6.01477933 ">999818.90</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="confirmations"><a href="#"><img src="img/icons/clock.svg"> 6</a></td>
+                                            <td class="pop_hover"><a href="#" aria-label="ID 2636">29051</a></td>
+                                            <td><span>3Qo6CK76o6cvsdMnaAg522wKedhXjmmFWF</span></td>
+                                            <td>6.01477933</td>
+                                            <td class="red_value">-0.01477933 BTC</td>
+                                            <td><a href="#" aria-label="BTC 6.01477933 ">999818.90</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">20:52</a></td>
+                                            <td class="pop_hover"><a href="#" aria-label="ID 2636">29051</a></td>
+                                            <td><span>3Qo6CK76o6cvsdMnaAg522wKedhXjmmFWF</span></td>
+                                            <td>6.01477933</td>
+                                            <td class="red_value">-0.01477933 BTC</td>
+                                            <td><a href="#" aria-label="BTC 6.01477933 ">999818.90</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">20:52</a></td>
+                                            <td class="pop_hover"><a href="#" aria-label="ID 2636">29051</a></td>
+                                            <td><span>3Qo6CK76o6cvsdMnaAg522wKedhXjmmFWF</span></td>
+                                            <td>6.01477933</td>
+                                            <td class="red_value">-0.01477933 BTC</td>
+                                            <td><a href="#" aria-label="BTC 6.01477933 ">999818.90</a></td>
+                                        </tr>
+                                    </tbody>
+                                    <tbody>
+                                        <tr class="table_head">
+                                            <td><span class="past_date">18 апреля</span></td>
+                                            <td></td>
+                                            <td colspan="2"></td>
+                                            <td>9.01477933 BTC</td>
+                                            <td>12 999.01 RUB</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">20:52</a></td>
+                                            <td class="pop_hover"><a href="#" aria-label="ID 2636">29051</a></td>
+                                            <td><span>3Qo6CK76o6cvsdMnaAg522wKedhXjmmFWF</span></td>
+                                            <td>6.01477933</td>
+                                            <td class="green_value">0.01477933 BTC</td>
+                                            <td><a href="#" aria-label="BTC 6.01477933 ">999818.90</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">20:52</a></td>
+                                            <td class="pop_hover"><a href="#" aria-label="ID 2636">29051</a></td>
+                                            <td><span>3Qo6CK76o6cvsdMnaAg522wKedhXjmmFWF</span></td>
+                                            <td>6.01477933</td>
+                                            <td class="green_value">0.01477933 BTC</td>
+                                            <td><a href="#" aria-label="BTC 6.01477933 ">999818.90</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">20:52</a></td>
+                                            <td class="pop_hover"><a href="#" aria-label="ID 2636">29051</a></td>
+                                            <td><span>3Qo6CK76o6cvsdMnaAg522wKedhXjmmFWF</span></td>
+                                            <td>6.01477933</td>
+                                            <td class="green_value">0.01477933 BTC</td>
+                                            <td><a href="#" aria-label="BTC 6.01477933 ">999818.90</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">20:52</a></td>
+                                            <td class="pop_hover"><a href="#" aria-label="ID 2636">29051</a></td>
+                                            <td><span>3Qo6CK76o6cvsdMnaAg522wKedhXjmmFWF</span></td>
+                                            <td>6.01477933</td>
+                                            <td class="green_value">0.01477933 BTC</td>
+                                            <td><a href="#" aria-label="BTC 6.01477933 ">999818.90</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">20:52</a></td>
+                                            <td class="pop_hover"><a href="#" aria-label="ID 2636">29051</a></td>
+                                            <td><span>3Qo6CK76o6cvsdMnaAg522wKedhXjmmFWF</span></td>
+                                            <td>6.01477933</td>
+                                            <td class="green_value">0.01477933 BTC</td>
+                                            <td><a href="#" aria-label="BTC 6.01477933 ">999818.90</a></td>
+                                        </tr>
+                                    </tbody>
+                                    <tbody>
+                                        <tr class="table_head">
+                                            <td><span class="past_date">17 апреля</span></td>
+                                            <td></td>
+                                            <td colspan="2"></td>
+                                            <td>9.01477933 BTC</td>
+                                            <td>12 999.01 RUB</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">20:52</a></td>
+                                            <td class="pop_hover"><a href="#" aria-label="ID 2636">29051</a></td>
+                                            <td><span>3Qo6CK76o6cvsdMnaAg522wKedhXjmmFWF</span></td>
+                                            <td>6.01477933</td>
+                                            <td class="green_value">0.01477933 BTC</td>
+                                            <td><a href="#" aria-label="BTC 6.01477933 ">999818.90</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">20:52</a></td>
+                                            <td class="pop_hover"><a href="#" aria-label="ID 2636">29051</a></td>
+                                            <td><span>3Qo6CK76o6cvsdMnaAg522wKedhXjmmFWF</span></td>
+                                            <td>6.01477933</td>
+                                            <td class="green_value">0.01477933 BTC</td>
+                                            <td><a href="#" aria-label="BTC 6.01477933 ">999818.90</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">20:52</a></td>
+                                            <td class="pop_hover"><a href="#" aria-label="ID 2636">29051</a></td>
+                                            <td><span>3Qo6CK76o6cvsdMnaAg522wKedhXjmmFWF</span></td>
+                                            <td>6.01477933</td>
+                                            <td class="green_value">0.01477933 BTC</td>
+                                            <td><a href="#" aria-label="BTC 6.01477933 ">999818.90</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">20:52</a></td>
+                                            <td class="pop_hover"><a href="#" aria-label="ID 2636">29051</a></td>
+                                            <td><span>3Qo6CK76o6cvsdMnaAg522wKedhXjmmFWF</span></td>
+                                            <td>6.01477933</td>
+                                            <td class="green_value">0.01477933 BTC</td>
+                                            <td><a href="#" aria-label="BTC 6.01477933 ">999818.90</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">20:52</a></td>
+                                            <td class="pop_hover"><a href="#" aria-label="ID 2636">29051</a></td>
+                                            <td><span>3Qo6CK76o6cvsdMnaAg522wKedhXjmmFWF</span></td>
+                                            <td>6.01477933</td>
+                                            <td class="green_value">0.01477933 BTC</td>
+                                            <td><a href="#" aria-label="BTC 6.01477933 ">999818.90</a></td>
+                                        </tr>
+                                    </tbody>
+                                    <tbody>
+                                        <tr class="table_head">
+                                            <td><span class="past_date">16 апреля</span></td>
+                                            <td></td>
+                                            <td colspan="2"></td>
+                                            <td>9.01477933 BTC</td>
+                                            <td>12 999.01 RUB</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">20:52</a></td>
+                                            <td class="pop_hover"><a href="#" aria-label="ID 2636">29051</a></td>
+                                            <td><span>3Qo6CK76o6cvsdMnaAg522wKedhXjmmFWF</span></td>
+                                            <td>6.01477933</td>
+                                            <td class="green_value">0.01477933 BTC</td>
+                                            <td><a href="#" aria-label="BTC 6.01477933 ">999818.90</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">20:52</a></td>
+                                            <td class="pop_hover"><a href="#" aria-label="ID 2636">29051</a></td>
+                                            <td><span>3Qo6CK76o6cvsdMnaAg522wKedhXjmmFWF</span></td>
+                                            <td>6.01477933</td>
+                                            <td class="green_value">0.01477933 BTC</td>
+                                            <td><a href="#" aria-label="BTC 6.01477933 ">999818.90</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">20:52</a></td>
+                                            <td class="pop_hover"><a href="#" aria-label="ID 2636">29051</a></td>
+                                            <td><span>3Qo6CK76o6cvsdMnaAg522wKedhXjmmFWF</span></td>
+                                            <td>6.01477933</td>
+                                            <td class="green_value">0.01477933 BTC</td>
+                                            <td><a href="#" aria-label="BTC 6.01477933 ">999818.90</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">20:52</a></td>
+                                            <td class="pop_hover"><a href="#" aria-label="ID 2636">29051</a></td>
+                                            <td><span>3Qo6CK76o6cvsdMnaAg522wKedhXjmmFWF</span></td>
+                                            <td>6.01477933</td>
+                                            <td class="green_value">0.01477933 BTC</td>
+                                            <td><a href="#" aria-label="BTC 6.01477933 ">999818.90</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="#">20:52</a></td>
+                                            <td class="pop_hover"><a href="#" aria-label="ID 2636">29051</a></td>
+                                            <td><span>3Qo6CK76o6cvsdMnaAg522wKedhXjmmFWF</span></td>
+                                            <td>6.01477933</td>
+                                            <td class="green_value">0.01477933 BTC</td>
+                                            <td><a href="#" aria-label="BTC 6.01477933 ">999818.90</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="navigation">
+                                    <ul>
+                                        <li><a href="#" class="nav_active">1</a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li><a href="#">4</a></li>
+                                        <li><a href="#" class="dots"><img src="img/icons/dots.svg"></a></li>
+                                        <li><a href="#"><img src="img/icons/nav-right-arrow.svg"></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tabs__pane" id="content-2">
+                            <div class="content__inner">
+                                <div class="receive">
+                                    <div class="receive__btc">
+                                        <h3 id="what-to-receive">Получить Bitcoin (BTC)</h3>
+                                        <!--
+                                        <div class="network">
+                                            <p>Выберите сеть:</p>
+                                            <input class="input_" type="radio" value="BTC" name="network" id="BTC" checked>
+                                            <label for="BTC">BTC</label>
+                                        </div>
+                                        -->
+                                        <div class="text_grey">
+                                            <p>
+                                            Пожалуйста, скопируйте адрес в Ваш кошелек, введите сумму, которую Вы хотите зачислить и подтвердите зачисление.
+                                            </p>
+                                        </div>
+                                        <div class="new__address">
+                                            <p>Новый адрес <span class="format">Формат <span class="format-address">BTC</span> / 34 символа</span> </p>
+                                            <form id='new-wallet-form' class="address_input">
+                                                <label id="current-wallet-index" aria-label="Ошибка длинною в жизнь человека Ошибка длинною в жизнь человека Ошибка длинною в жизнь человека">92:</label>
+                                                <input disabled class="copy_input" type="text" id="new-wallet-address">
+                                                <button onclick="copy()" type="button"><img src="img/icons/copy.svg">Копировать</button>
+                                            </form>
+
+                                            <p class="new__address_create">
+                                                <a href="javascript:PM.perform_create_wallet();" >
+                                                    Сгенерировать новый адрес
+                                                </a>
+                                            </p>
+
+                                        </div>
+                                    </div>
+                                    <div class="qr_code">
+                                        <p>Отсканируйте QR код для оплаты из мобильного приложения:</p>
+                                        <div class="qr_img">
+                                            <img src="img/qr_code.svg">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="previous__addresses">
+                                    <h3>Предыдущие адреса</h3>
+                                    <div class="table_wrapper">
+                                        <table id="wallet-addresses-table" class='address_table'>
+                                            <tr>
+                                                <td>11:</td>
+                                                <td>3CES4XhJvj3VLEwsJWoQoNtjSqV9MEHDQH</td>
+                                                <td>Не использован</td>
+                                            </tr>
+                                            <tr class='total-received'>
+                                                <td>10:</td>
+                                                <td>3CES4XhJvj3VLEwsJWoQoNtjSqV9MEHDQH</td>
+                                                <td>Всего получено: <span> 0.00343475 BTC</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>9:</td>
+                                                <td>3CES4XhJvj3VLEwsJWoQoNtjSqV9MEHDQH</td>
+                                                <td>Не использован</td>
+                                            </tr>
+                                            <tr>
+                                                <td>8:</td>
+                                                <td>3CES4XhJvj3VLEwsJWoQoNtjSqV9MEHDQH</td>
+                                                <td>Не использован</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7:</td>
+                                                <td>3CES4XhJvj3VLEwsJWoQoNtjSqV9MEHDQH</td>
+                                                <td>Не использован</td>
+                                            </tr>
+                                            <tr>
+                                                <td>6:</td>
+                                                <td>3CES4XhJvj3VLEwsJWoQoNtjSqV9MEHDQH</td>
+                                                <td>Не использован</td>
+                                            </tr>
+                                            <tr>
+                                                <td>5:</td>
+                                                <td>3CES4XhJvj3VLEwsJWoQoNtjSqV9MEHDQH</td>
+                                                <td>Не использован</td>
+                                            </tr>
+                                            <tr>
+                                                <td>4:</td>
+                                                <td>3CES4XhJvj3VLEwsJWoQoNtjSqV9MEHDQH</td>
+                                                <td>Не использован</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3:</td>
+                                                <td>3CES4XhJvj3VLEwsJWoQoNtjSqV9MEHDQH</td>
+                                                <td>Не использован</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2:</td>
+                                                <td>3CES4XhJvj3VLEwsJWoQoNtjSqV9MEHDQH</td>
+                                                <td>Не использован</td>
+                                            </tr>
+                                            <tr>
+                                                <td>1:</td>
+                                                <td>3CES4XhJvj3VLEwsJWoQoNtjSqV9MEHDQH</td>
+                                                <td>Не использован</td>
+                                            </tr>
+                                            
+                                        </table>
+                                    </div>
+                                    <a class="show_more" href="#" onclick="return false">Показать еще</a><a class="show_less" href="#" onclick="return false">Свернуть</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tabs__pane" id="content-3">
+                            <div class="content__inner">
+                                <div class="send">
+                                    <h3 id="what-to-send">Отправить Bitcoin (BTC)</h3>
+                                    <div class="text_grey">
+                                        <p>Пожалуйста, введите адрес, сумму и размер комисии сети, затем нажмите “Отправить”.</p>
+                                    </div>
+                                    <form action="">
+                                        <div class="send_form">
+                                            <div class="receivers">
+                                                <div class="receiver disabled">
+                                                    <div class="send_address">
+                                                        <label for="">Адрес</label>
+                                                        <input type="text" placeholder="Введите адрес получателя" class="input_form">
+                                                        <button type="button" class="delete_btn"><img src="img/icons/delete_receiver.svg"></button>
+                                                    </div>
+                                                    
+                                                    <div class="send_sum">
+                                                        <label for="">Сумма</label>
+                                                        <input type="text" placeholder="Введите сумму" class="input_form">
+                                                        <img src="img/icons/grey_arrow_right.svg">
+                                                        <input type="text" placeholder="0.00" class="input_form">
+                                                    </div>
+                                                    <a href="#" onclick="return false">Отправить всё</a>
+                                                </div>
+
+                                            </div>
+                                            
+                                            <div>
+                                                <a href="#" onclick="return false" class="add_receiver"><img src="img/icons/blue_plus.svg">Добавить получателя</a>
+                                            </div>
+                                            <div class='network__comission'>
+                                                <div class="label">Комиссия сети</div>
+                                                <select name="comission__select" id="comission__select" class="input_form">
+                                                    <option value="other">Другая</option>
+                                                    <option value="173"><span>Высокая</span> <span>173 sat/B</span></option>
+                                                    <option value="149"><span>Обычная</span> <span>149 sat/B</span></option>
+                                                    <option value="83"><span>Экономная</span> <span>83 sat/B</span></option>
+                                                    <option value="7"><span>Низкая</span> <span>7 sat/B</span></option>
+                                                </select>
+                                                <input type="text" class="input_form input_comission">
+                                                <div>Применение низкой комиссии не рекомендуется</div>
+                                                <p class="comission"><span>Комиссия</span> <span>0.00000000</span> <span>BTC</span></p>
+                                                <p class="text_grey">Комиссия за использование сервиса составляет 0.2% от суммы перевода</p>
+                                            </div>
+                                        </div>
+                                        <button class="submit_btn" type="submit" disabled><img src="img/icons/submit_arrow_right.svg">Отправить</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </div>
+</body>
+</html>

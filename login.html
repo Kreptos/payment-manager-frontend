@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <title>Кошелек-банк</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/login.js"></script>
+
+    <script type="text/javascript" src="js/settings_local.js"></script>
+    <script type="text/javascript" src="js/payment_manager_login.js"></script>
+</head>
+<body>
+    <div class='login'>
+        <div class="login_inner">
+            <!-- class="form_log error" - неправильный пароль -->
+            <form id="login_form" class="form_log" action="">
+                <div class="input_wrapper" aria-label="Неверный E-mail"><input id="username" class="input_log" type="text" placeholder="E-mail"></div>
+                <div class="input_wrapper" aria-label="Неверный пароль"><input id="password" class="input_log" type="password" placeholder="Пароль"></div>
+                <div class="button_wrapper"><input id="button_login" class="btn_log" type="submit" disabled value="Вход"></input></div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
